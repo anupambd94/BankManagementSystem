@@ -1,0 +1,1495 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Windows.Design</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Windows.Design.ContextItem">
+      <summary>Represents a single piece of state in the designer.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItem.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.ContextItem" /> class.</summary>
+    </member>
+    <member name="P:Microsoft.Windows.Design.ContextItem.ItemType">
+      <summary>When overridden in a derived class, gets the item type for this editing context item. </summary>
+      <returns>The <see cref="T:System.Type" /> for this editing context item.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItem.OnItemChanged(Microsoft.Windows.Design.EditingContext,Microsoft.Windows.Design.ContextItem)">
+      <summary>Called on a context item before it is stored in the context item manager. </summary>
+      <param name="context">The editing context that is making this change.</param>
+      <param name="previousItem">The previously active item in the context.</param>
+    </member>
+    <member name="T:Microsoft.Windows.Design.ContextItemManager">
+      <summary>Maintains a set of context items. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItemManager.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.ContextItemManager" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItemManager.Contains``1">
+      <summary>Returns a value indicating whether the context item manager contains an item of the specified type.</summary>
+      <returns>true if the context contains an instance of this item type; otherwise, false.</returns>
+      <typeparam name="ItemType">The type of item to check.</typeparam>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItemManager.Contains(System.Type)">
+      <summary>When overridden in a derived class, returns a value indicating whether the context item manager contains an item of the specified type.</summary>
+      <returns>true if the context contains an instance of this item type; otherwise, false.</returns>
+      <param name="itemType">The type of item to check.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="itemType" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItemManager.GetEnumerator">
+      <summary>When overridden in a derived class, gets an enumeration of context items in the editing context.</summary>
+      <returns>An enumeration of context items.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItemManager.GetTarget(System.Delegate)">
+      <summary>A utility method that returns the target object for a delegate.</summary>
+      <returns>The target object of the callback.</returns>
+      <param name="callback">The callback whose target you want.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="callback" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItemManager.GetValue``1">
+      <summary>Returns an instance of the requested item type. </summary>
+      <returns>A context item of the requested type. If there is no item in the context of this type, a default one will be created.</returns>
+      <typeparam name="ItemType">The type of item to return.</typeparam>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItemManager.GetValue(System.Type)">
+      <summary>When overridden in a derived class, returns an instance of the requested item type. </summary>
+      <returns>A context item of the requested type. If there is no item in the context of this type, a default one will be created.</returns>
+      <param name="itemType">The type of item to return.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="itemType" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItemManager.NotifyItemChanged(Microsoft.Windows.Design.EditingContext,Microsoft.Windows.Design.ContextItem,Microsoft.Windows.Design.ContextItem)">
+      <summary>Invokes the protected <see cref="M:Microsoft.Windows.Design.ContextItem.OnItemChanged(Microsoft.Windows.Design.EditingContext,Microsoft.Windows.Design.ContextItem)" /> method on the specified <see cref="T:Microsoft.Windows.Design.ContextItem" />.</summary>
+      <param name="context">The editing context in use.</param>
+      <param name="item">The new context item.</param>
+      <param name="previousItem">The previous context item.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="context" />, <paramref name="item" />, or <paramref name="previousItem" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItemManager.RemoveCallback(System.Delegate,System.Delegate)">
+      <summary>A helper method that performs a Delegate.Remove, but knows how to unwrap delegates that are proxies to generic callbacks. </summary>
+      <returns>The new delegate that should be assigned to existing.</returns>
+      <param name="existing">The existing delegate.</param>
+      <param name="toRemove">The delegate to be removed from existing.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItemManager.SetValue(Microsoft.Windows.Design.ContextItem)">
+      <summary>When overridden in a derived class, sets a context item to the specified value. </summary>
+      <param name="value">The value to set into the context item manager. Cannot be null.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItemManager.Subscribe``1(Microsoft.Windows.Design.SubscribeContextCallback{``0})">
+      <summary>Adds a callback that is invoked when a context item of the specified item type changes.</summary>
+      <param name="callback">A callback that is invoked when <paramref name="ContextItemType" /> changes.</param>
+      <typeparam name="ContextItemType">The type of item to subscribe to.</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="callback" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItemManager.Subscribe(System.Type,Microsoft.Windows.Design.SubscribeContextCallback)">
+      <summary>When overridden in a derived class, adds a callback that is invoked when a context item of the specified item type changes.</summary>
+      <param name="contextItemType">The type of item to subscribe to.</param>
+      <param name="callback">A callback that will be invoked when <paramref name="contextItemType" /> changes.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="contextItemType" /> or <paramref name="callback" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItemManager.System#Collections#IEnumerable#GetEnumerator">
+      <summary>For a description of this member, see <see cref="M:System.Collections.IEnumerable.GetEnumerator" />.</summary>
+      <returns />
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItemManager.Unsubscribe``1(Microsoft.Windows.Design.SubscribeContextCallback{``0})">
+      <summary>Removes a subscription.</summary>
+      <param name="callback">The callback to remove.</param>
+      <typeparam name="ContextItemType">The type of context item to remove the callback from.</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="callback" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ContextItemManager.Unsubscribe(System.Type,Microsoft.Windows.Design.SubscribeContextCallback)">
+      <summary>When overridden in a derived class, removes a subscription.</summary>
+      <param name="contextItemType">The type of context item to remove the callback from.</param>
+      <param name="callback">The callback to remove.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="contextItemType" /> or <paramref name="callback" /> is null.</exception>
+    </member>
+    <member name="T:Microsoft.Windows.Design.EditingContext">
+      <summary>Contains contextual state about a designer.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.EditingContext.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.EditingContext" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.EditingContext.CreateContextItemManager">
+      <summary>Creates an instance of the context item manager to be returned from the <see cref="P:Microsoft.Windows.Design.EditingContext.Items" /> property. </summary>
+      <returns>An implementation of the <see cref="T:Microsoft.Windows.Design.ContextItemManager" /> class.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.EditingContext.CreateServiceManager">
+      <summary>Creates an instance of the service manager to be returned from the <see cref="P:Microsoft.Windows.Design.EditingContext.Services" /> property. </summary>
+      <returns>An implementation of the <see cref="T:Microsoft.Windows.Design.ServiceManager" /> class.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.EditingContext.Dispose">
+      <summary>Releases all resources used by the <see cref="T:Microsoft.Windows.Design.EditingContext" />.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.EditingContext.Dispose(System.Boolean)">
+      <summary>Releases the unmanaged resources used by the <see cref="T:Microsoft.Windows.Design.EditingContext" /> and optionally releases the managed resources. </summary>
+      <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources. </param>
+    </member>
+    <member name="E:Microsoft.Windows.Design.EditingContext.Disposing">
+      <summary>Occurs when the <see cref="M:Microsoft.Windows.Design.EditingContext.Dispose" /> method is called.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.EditingContext.Finalize">
+      <summary>Finalizer that implements the <see cref="T:System.IDisposable" /> pattern.</summary>
+    </member>
+    <member name="P:Microsoft.Windows.Design.EditingContext.Items">
+      <summary>Gets the local collection of context items offered by this editing context.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.ContextItemManager" /> of context items offered by this editing context.</returns>
+      <exception cref="T:System.InvalidOperationException">The <see cref="M:Microsoft.Windows.Design.EditingContext.CreateContextItemManager" /> method returned a null<see cref="T:Microsoft.Windows.Design.ContextItemManager" />.</exception>
+    </member>
+    <member name="P:Microsoft.Windows.Design.EditingContext.Services">
+      <summary>Gets the service manager for this editing context.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.ServiceManager" /> for this editing context.</returns>
+      <exception cref="T:System.InvalidOperationException">The <see cref="M:Microsoft.Windows.Design.EditingContext.CreateServiceManager" /> method returned a null<see cref="T:Microsoft.Windows.Design.ServiceManager" />.</exception>
+    </member>
+    <member name="T:Microsoft.Windows.Design.OrderToken">
+      <summary>A generic class that identifies the sort order of hierarchical items.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.OrderToken.#ctor(Microsoft.Windows.Design.OrderTokenPrecedence,Microsoft.Windows.Design.OrderToken,Microsoft.Windows.Design.OrderTokenConflictResolution)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.OrderToken" /> class based on the specified referenced <see cref="T:Microsoft.Windows.Design.OrderToken" />, precedence, and conflict resolution semantics.</summary>
+      <param name="precedence">Precedence of this token based on the referenced token.</param>
+      <param name="reference">Referenced token. May be null for the root token case. A root token is a token that is not dependent on any token.</param>
+      <param name="conflictResolution">Conflict resolution semantics. </param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.OrderToken.CompareTo(Microsoft.Windows.Design.OrderToken)">
+      <summary>Compares this order token with the specified order token. </summary>
+      <returns>0 when the tokens have an equal order priority, -1 if this order comes before the specified order, 1 otherwise.</returns>
+      <param name="other">The token to compare to this token.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.OrderToken.ResolveConflict(Microsoft.Windows.Design.OrderToken,Microsoft.Windows.Design.OrderToken)">
+      <summary>Called by the default <see cref="M:Microsoft.Windows.Design.OrderToken.CompareTo(Microsoft.Windows.Design.OrderToken)" /> implementation when two <see cref="T:Microsoft.Windows.Design.OrderToken" /> objects appear to be equivalent. </summary>
+      <returns>0, if the two are equal, -1, if left comes before right, 1 otherwise.</returns>
+      <param name="left">Left <see cref="T:Microsoft.Windows.Design.OrderToken" />.</param>
+      <param name="right">Right <see cref="T:Microsoft.Windows.Design.OrderToken" />.</param>
+    </member>
+    <member name="T:Microsoft.Windows.Design.OrderTokenConflictResolution">
+      <summary>An enumeration used to specify the winner of ordering ties. </summary>
+    </member>
+    <member name="F:Microsoft.Windows.Design.OrderTokenConflictResolution.Win">
+      <summary>Indicates that this token should win during conflicts. If two tokens are compared that are equivalent and both have their <see cref="T:Microsoft.Windows.Design.OrderTokenConflictResolution" /> set to <see cref="F:Microsoft.Windows.Design.OrderTokenConflictResolution.Win" />, they are considered equal.</summary>
+    </member>
+    <member name="F:Microsoft.Windows.Design.OrderTokenConflictResolution.Lose">
+      <summary>Indicates that this token should lose during conflicts. </summary>
+    </member>
+    <member name="T:Microsoft.Windows.Design.OrderTokenPrecedence">
+      <summary>An enumeration that specifies the precedence of order tokens. </summary>
+    </member>
+    <member name="F:Microsoft.Windows.Design.OrderTokenPrecedence.Before">
+      <summary>Indicates that this token comes before.</summary>
+    </member>
+    <member name="F:Microsoft.Windows.Design.OrderTokenPrecedence.After">
+      <summary>Indicates that this token comes after.</summary>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PublishServiceCallback">
+      <summary>A delegate that is called back when an object should publish an instance of a service.</summary>
+      <returns>An instance of type <paramref name="serviceType" />.</returns>
+      <param name="serviceType">The type of service to be published.</param>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PublishServiceCallback`1">
+      <summary>A generic delegate that is called back when an object should publish an instance of a service.</summary>
+      <returns>An instance of the specified service type.</returns>
+    </member>
+    <member name="T:Microsoft.Windows.Design.ServiceManager">
+      <summary>Represents the behavior associated with an <see cref="T:Microsoft.Windows.Design.EditingContext" />.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.ServiceManager" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.Contains``1">
+      <summary>Determines if the <see cref="T:Microsoft.Windows.Design.ServiceManager" /> contains a service of the specified type.</summary>
+      <returns>true if <see cref="T:Microsoft.Windows.Design.ServiceManager" /> contains <paramref name="serviceType" />; otherwise, false.</returns>
+      <typeparam name="ServiceType">The type of service to search for.</typeparam>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.Contains(System.Type)">
+      <summary>When overridden in a derived class, determines whether the <see cref="T:Microsoft.Windows.Design.ServiceManager" /> contains a service of the specified type.</summary>
+      <returns>true if <see cref="T:Microsoft.Windows.Design.ServiceManager" /> contains <paramref name="serviceType" />; otherwise, false.</returns>
+      <param name="serviceType">The type of service to search for.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.GetEnumerator">
+      <summary>When overridden in a derived class, retrieves an enumerator of the published services of this <see cref="T:Microsoft.Windows.Design.ServiceManager" />.</summary>
+      <returns>An enumeration of published services.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.GetRequiredService``1">
+      <summary>Retrieves an instance of a service of the specified type.</summary>
+      <returns>An instance of the type of service requested. This method never returns null.</returns>
+      <typeparam name="ServiceType">The type of service to retrieve.</typeparam>
+      <exception cref="T:System.NotSupportedException">There is no service of the type requested.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.GetService``1">
+      <summary>Retrieves an instance of a service of the specified generic type.</summary>
+      <returns>An instance of the type of service requested; otherwise, null.</returns>
+      <typeparam name="ServiceType">The type of service to retrieve.</typeparam>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.GetService(System.Type)">
+      <summary>When overridden in a derived class, retrieves an instance of a service of the specified type.</summary>
+      <returns>An instance of the type of service requested; otherwise, null.</returns>
+      <param name="serviceType">The type of service to retrieve.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.GetTarget(System.Delegate)">
+      <summary>A helper method that gets the target object for a delegate. </summary>
+      <returns>The target of <paramref name="callback" />.</returns>
+      <param name="callback">The delegate for which to get the target.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="callback" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.Publish``1(Microsoft.Windows.Design.PublishServiceCallback{``0})">
+      <summary>Publishes a service of the specified type, represented by the specified method.</summary>
+      <param name="callback">The method to invoke when the service is requested.</param>
+      <typeparam name="ServiceType">The type of service that is being published.</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="callback" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.Publish(System.Type,Microsoft.Windows.Design.PublishServiceCallback)">
+      <summary>When overridden in a derived class, publishes a service of the specified type, represented by the specified method.</summary>
+      <param name="serviceType">The type of service that is being published.</param>
+      <param name="callback">The method to invoke when the service is requested.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.Publish(System.Type,System.Object)">
+      <summary>When overridden in a derived class, publishes the specified service instance of the specified type.</summary>
+      <param name="serviceType">The type of service that is being published.</param>
+      <param name="serviceInstance">An instance of the service.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.Publish``1(``0)">
+      <summary>Publishes the specified service instance of the specified type.</summary>
+      <param name="serviceInstance">An instance of the service.</param>
+      <typeparam name="ServiceType">The type of service that is being published.</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="serviceInstance" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.RemoveCallback(System.Delegate,System.Delegate)">
+      <summary>Removes a callback method from a delegate.</summary>
+      <returns>A new delegate to replace the existing delegate. If <paramref name="existing" /> is null, returns null. If <paramref name="toRemove" /> is null, returns <paramref name="existing" />.</returns>
+      <param name="existing">The delegate to remove the callback from.</param>
+      <param name="toRemove">The callback method to remove from the delegate.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.Subscribe``1(Microsoft.Windows.Design.SubscribeServiceCallback{``0})">
+      <summary>Requests that the specified method is called when a service of the specified type is available.</summary>
+      <param name="callback">The method to invoke when the service is available.</param>
+      <typeparam name="SeviceType">The type of service to subscribe to.</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="callback" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.Subscribe(System.Type,Microsoft.Windows.Design.SubscribeServiceCallback)">
+      <summary>When overridden in a derived class, requests that the specified method is called when a service of the specified type is available.</summary>
+      <param name="serviceType">The type of service to subscribe to.</param>
+      <param name="callback">The method to invoke when the service is available.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.System#Collections#IEnumerable#GetEnumerator">
+      <summary>For a description of this member, see <see cref="M:System.Collections.IEnumerable.GetEnumerator" />.</summary>
+      <returns />
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.Unsubscribe``1(Microsoft.Windows.Design.SubscribeServiceCallback{``0})">
+      <summary>Requests that the specified method is no longer called when a service of the specified type is available.</summary>
+      <param name="callback">The method to no longer invoke when the service is available.</param>
+      <typeparam name="ServiceType">The type of service to unsubscribe from.</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="callback" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ServiceManager.Unsubscribe(System.Type,Microsoft.Windows.Design.SubscribeServiceCallback)">
+      <summary>When overridden in a derived class, requests that the specified method is no longer called when a service of the specified type is available.</summary>
+      <param name="serviceType">The type of service to unsubscribe from.</param>
+      <param name="callback">The method to no longer invoke when the service is available.</param>
+    </member>
+    <member name="T:Microsoft.Windows.Design.SubscribeContextCallback">
+      <summary>Defines a callback method that is invoked when a context item changes.</summary>
+      <param name="item">The context item that has changed.</param>
+    </member>
+    <member name="T:Microsoft.Windows.Design.SubscribeContextCallback`1">
+      <summary>Defines a callback method that is invoked when a context item changes.</summary>
+      <param name="item">The context item that has changed.</param>
+    </member>
+    <member name="T:Microsoft.Windows.Design.SubscribeServiceCallback">
+      <summary>A delegate that is a callback for service subscriptions.</summary>
+      <param name="serviceType">The type of service that has just been published.</param>
+      <param name="serviceInstance">The instance of the service.</param>
+    </member>
+    <member name="T:Microsoft.Windows.Design.SubscribeServiceCallback`1">
+      <summary>A generic delegate that is a callback for service subscriptions.</summary>
+      <param name="serviceInstance">The instance of the service.</param>
+    </member>
+    <member name="T:Microsoft.Windows.Design.ToolboxBrowsableAttribute">
+      <summary>Specifies whether a control is visible in a designer's toolbox browser. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.ToolboxBrowsableAttribute.#ctor(System.Boolean)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.ToolboxBrowsableAttribute" /> class.</summary>
+      <param name="browsable">true to enable visibility for a control in a toolbox browser; otherwise, false. </param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.ToolboxBrowsableAttribute.Browsable">
+      <summary>Gets the <see cref="P:Microsoft.Windows.Design.ToolboxBrowsableAttribute.Browsable" /> flag associated with this attribute.</summary>
+      <returns>true if a control is visible in the toolbox browser; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.ToolboxBrowsableAttribute.No">
+      <summary>Gets a <see cref="T:Microsoft.Windows.Design.ToolboxBrowsableAttribute" /> with <see cref="P:Microsoft.Windows.Design.ToolboxBrowsableAttribute.Browsable" /> set to false.</summary>
+      <returns>A pre-defined static instance of the <see cref="T:Microsoft.Windows.Design.ToolboxBrowsableAttribute" /> with <see cref="P:Microsoft.Windows.Design.ToolboxBrowsableAttribute.Browsable" /> set to false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.ToolboxBrowsableAttribute.Yes">
+      <summary>Gets a <see cref="T:Microsoft.Windows.Design.ToolboxBrowsableAttribute" /> with <see cref="P:Microsoft.Windows.Design.ToolboxBrowsableAttribute.Browsable" /> set to true.</summary>
+      <returns>A pre-defined static instance of the <see cref="T:Microsoft.Windows.Design.ToolboxBrowsableAttribute" /> with <see cref="P:Microsoft.Windows.Design.ToolboxBrowsableAttribute.Browsable" /> set to false.</returns>
+    </member>
+    <member name="T:Microsoft.Windows.Design.Metadata.AttributeCallback">
+      <summary>Called when attributes are needed for a type.</summary>
+      <param name="builder">An <see cref="T:Microsoft.Windows.Design.Metadata.AttributeCallbackBuilder" /> that can be used to add attributes. <see cref="T:Microsoft.Windows.Design.Metadata.AttributeCallbackBuilder" /> delegates can build attributes only for the type that is requesting metadata. </param>
+    </member>
+    <member name="T:Microsoft.Windows.Design.Metadata.AttributeCallbackBuilder">
+      <summary>An instance of this class is passed to callback delegates to lazily populate the attributes for a type.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeCallbackBuilder.AddCustomAttributes(System.Attribute[])">
+      <summary>Adds the contents of the specified attributes to this builder. </summary>
+      <param name="attributes">An array of new attributes to add.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="attributes" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeCallbackBuilder.AddCustomAttributes(System.ComponentModel.MemberDescriptor,System.Attribute[])">
+      <summary>Adds the contents of the specified attributes to this builder and attaches them to the specified <see cref="T:System.ComponentModel.MemberDescriptor" />.</summary>
+      <param name="descriptor">An event or property descriptor to add attributes to.</param>
+      <param name="attributes">An array of new attributes to add.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="descriptor" /> or <paramref name="attributes" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeCallbackBuilder.AddCustomAttributes(System.Reflection.MemberInfo,System.Attribute[])">
+      <summary>Adds the contents of the specified attributes to this builder and attaches them to the specified <see cref="T:System.Reflection.MemberInfo" />. </summary>
+      <param name="member">An <see cref="T:System.Reflection.EventInfo" /> or <see cref="T:System.Reflection.PropertyInfo" /> to add attributes to.</param>
+      <param name="attributes">An array of new attributes to add.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="member" /> or <paramref name="attributes" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeCallbackBuilder.AddCustomAttributes(System.String,System.Attribute[])">
+      <summary>Adds attributes to the member with the specified name. </summary>
+      <param name="memberName">The member to add attributes for. Only property and event members are supported; all others will be ignored.</param>
+      <param name="attributes">An array of new attributes to add.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="memberName" /> or <paramref name="attributes" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeCallbackBuilder.AddCustomAttributes(System.Windows.DependencyProperty,System.Attribute[])">
+      <summary>Adds the contents of the specified attributes to this builder and attaches them to the specified <see cref="T:System.Windows.DependencyProperty" />.</summary>
+      <param name="dp">A dependency property to add attributes to.</param>
+      <param name="attributes">An array of new attributes to add.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="dp" /> or <paramref name="attributes" /> is null.</exception>
+    </member>
+    <member name="P:Microsoft.Windows.Design.Metadata.AttributeCallbackBuilder.CallbackType">
+      <summary>Gets the type this callback is being invoked for.</summary>
+      <returns />
+    </member>
+    <member name="T:Microsoft.Windows.Design.Metadata.AttributeTable">
+      <summary>A table of metadata attributes for defining design-time appearance and behavior. </summary>
+    </member>
+    <member name="P:Microsoft.Windows.Design.Metadata.AttributeTable.AttributedTypes">
+      <summary>Gets an enumeration of all types which have attribute overrides of some kind, for example, on a property or on the type itself. </summary>
+      <returns>An enumeration of types which have attribute overrides.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTable.ContainsAttributes(System.Type)">
+      <summary>Returns a value indicating whether this table contains any metadata for the specified type. </summary>
+      <returns>true if the table contains attributes for the specified type; otherwise, false.</returns>
+      <param name="type">The type to check for metadata attributes.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="type" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTable.GetCustomAttributes(System.Type)">
+      <summary>Returns an enumeration of all attributes provided for the specified type. </summary>
+      <returns>An enumeration of attributes.</returns>
+      <param name="type">The type to get class-level attributes for.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="type" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTable.GetCustomAttributes(System.Type,System.ComponentModel.MemberDescriptor)">
+      <summary>Returns an enumeration of all attributes provided for the specified type and <see cref="T:System.ComponentModel.MemberDescriptor" />. </summary>
+      <returns>An enumeration of attributes.</returns>
+      <param name="ownerType">The type that declares this descriptor.</param>
+      <param name="descriptor">A <see cref="T:System.ComponentModel.MemberDescriptor" /> to get custom attributes for.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="ownerType" /> or <paramref name="descriptor" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTable.GetCustomAttributes(System.Type,System.Reflection.MemberInfo)">
+      <summary>Returns an enumeration of all attributes provided for the specified type and <see cref="T:System.Reflection.MemberInfo" />. </summary>
+      <returns>An enumeration of attributes.</returns>
+      <param name="ownerType">The owning type of the dependency property.</param>
+      <param name="member">A <see cref="T:System.Reflection.MemberInfo" /> specifying the member to provide attributes for.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="ownerType" /> or <paramref name="member" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTable.GetCustomAttributes(System.Type,System.String)">
+      <summary>Returns an enumeration of all attributes provided for the specified type and member name. </summary>
+      <returns>An enumeration of attributes.</returns>
+      <param name="ownerType">The owning type of the dependency property.</param>
+      <param name="memberName">The name of the member to provide attributes for.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="ownerType" /> or <paramref name="memberName" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTable.GetCustomAttributes(System.Type,System.Windows.DependencyProperty)">
+      <summary>Returns an enumeration of all attributes provided for the specified type and <see cref="T:System.Windows.DependencyProperty" />. </summary>
+      <returns>An enumeration of attributes.</returns>
+      <param name="ownerType">The owner type of the dependency property.</param>
+      <param name="dp">A dependency property to get custom attributes for.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="ownerType" /> or <paramref name="dp" /> is null.</exception>
+    </member>
+    <member name="T:Microsoft.Windows.Design.Metadata.AttributeTableBuilder">
+      <summary>Creates an attribute table that can be passed to the metadata store. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableBuilder.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.Metadata.AttributeTableBuilder" /> class. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableBuilder.AddCallback(System.Type,Microsoft.Windows.Design.Metadata.AttributeCallback)">
+      <summary>Adds a callback that is invoked when metadata for the specified type is needed. </summary>
+      <param name="type">The type to add metadata attributes to. </param>
+      <param name="callback">An <see cref="T:Microsoft.Windows.Design.Metadata.AttributeCallback" /> which adds metadata to <paramref name="Type" />.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableBuilder.AddCustomAttributes(System.Type,System.Attribute[])">
+      <summary>Adds the contents of the provided attributes to the table builder. </summary>
+      <param name="type">The type to add class-level attributes to.</param>
+      <param name="attributes">The new attributes to add to <paramref name="type" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="type" /> or <paramref name="attributes" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableBuilder.AddCustomAttributes(System.Type,System.ComponentModel.MemberDescriptor,System.Attribute[])">
+      <summary>Adds the contents of the provided attributes to the table builder and attaches them to the specified <see cref="T:System.ComponentModel.MemberDescriptor" />. </summary>
+      <param name="ownerType">The owning type of the member.</param>
+      <param name="descriptor">An event or property descriptor to add attributes to.</param>
+      <param name="attributes">The attributes to add.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="ownerType" />, <paramref name="descriptor" />, or <paramref name="attributes" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableBuilder.AddCustomAttributes(System.Type,System.Reflection.MemberInfo,System.Attribute[])">
+      <summary>Adds the contents of the provided attributes to the table builder and attaches them to the specified <see cref="T:System.Reflection.MemberInfo" />. </summary>
+      <param name="ownerType">The owning type of the member.</param>
+      <param name="member">An event or property descriptor to add attributes to.</param>
+      <param name="attributes">The attributes to add.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="ownerType" />, <paramref name="member" />, or <paramref name="attributes" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableBuilder.AddCustomAttributes(System.Type,System.String,System.Attribute[])">
+      <summary>Adds attributes to the member with the specified name. </summary>
+      <param name="ownerType">The owning type of the member.</param>
+      <param name="memberName">The member to add attributes for. </param>
+      <param name="attributes">The attributes to add.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="ownerType" />, <paramref name="memberName" />, or <paramref name="attributes" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableBuilder.AddCustomAttributes(System.Type,System.Windows.DependencyProperty,System.Attribute[])">
+      <summary>Adds the contents of the provided attributes to the table builder and attaches them to the specified <see cref="T:System.Windows.DependencyProperty" />. </summary>
+      <param name="ownerType">The type that owns the dependency property.</param>
+      <param name="dp">A <see cref="T:System.Windows.DependencyProperty" /> to add attributes to.</param>
+      <param name="attributes">The attributes to add.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="ownerType" />, <paramref name="dp" />, or <paramref name="attributes" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableBuilder.AddTable(Microsoft.Windows.Design.Metadata.AttributeTable)">
+      <summary>Adds the contents of the provided attribute table to the table builder. </summary>
+      <param name="table">An existing attribute table.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="table" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableBuilder.CreateTable">
+      <summary>Creates an attribute table that contains all the attribute definitions provided through <see cref="M:Microsoft.Windows.Design.Metadata.AttributeCallbackBuilder.AddCustomAttributes(System.Attribute[])" /> calls. </summary>
+      <returns>An attribute table that can be passed to the metadata store.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableBuilder.ValidateTable">
+      <summary>This method is used to verify the attribute table which is being built contains valid attribute information. </summary>
+      <exception cref="T:Microsoft.Windows.Design.Metadata.AttributeTableValidationException">The state of the table is invalid.</exception>
+    </member>
+    <member name="T:Microsoft.Windows.Design.Metadata.AttributeTableValidationException">
+      <summary>Raised when the metadata provided in an <see cref="T:Microsoft.Windows.Design.Metadata.AttributeTable" /> does not match properties, methods and events on existing types.  </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableValidationException.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.Metadata.AttributeTableValidationException" /> class. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableValidationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.Metadata.AttributeTableValidationException" /> class with serialization information. </summary>
+      <param name="info">The serialization store.</param>
+      <param name="context">The serialization context.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableValidationException.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.Metadata.AttributeTableValidationException" /> class with a message. </summary>
+      <param name="message">A string describing the exception.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableValidationException.#ctor(System.String,System.Collections.Generic.IEnumerable{System.String})">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.Metadata.AttributeTableValidationException" /> class with a collection of validation errors. </summary>
+      <param name="message">The message provided to the user.</param>
+      <param name="validationErrors">A collection of errors which occurred during validation.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableValidationException.#ctor(System.String,System.Exception)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.Metadata.AttributeTableValidationException" /> class with an inner exception. </summary>
+      <param name="message">The message provided to the user.</param>
+      <param name="inner">An optional inner exception.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableValidationException.#ctor(System.String,System.Exception,System.Collections.Generic.IEnumerable{System.String})">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.Metadata.AttributeTableValidationException" /> class with a message, a collection of error strings, and an inner exception. </summary>
+      <param name="message">The message provided to the user.</param>
+      <param name="inner">An optional inner exception.</param>
+      <param name="validationErrors">A collection of errors which occurred during validation.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.AttributeTableValidationException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Override of the Exception type's <see cref="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" /> method that is used to perform serialization.</summary>
+      <param name="info">The serialization store.</param>
+      <param name="context">The serialization context.</param>
+      <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown. </param>
+      <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination. </param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.Metadata.AttributeTableValidationException.ValidationErrors">
+      <summary>Gets a collection of validation errors.</summary>
+      <returns>An enumerable collection of error strings.</returns>
+    </member>
+    <member name="T:Microsoft.Windows.Design.Metadata.IRegisterMetadata">
+      <summary>Specifies a class that requests extra attributes to be added to the metadata store.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.IRegisterMetadata.Register">
+      <summary>Attaches design-time metadata to a particular control type. </summary>
+    </member>
+    <member name="T:Microsoft.Windows.Design.Metadata.MetadataStore">
+      <summary>A container of custom design-time attributes. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.Metadata.MetadataStore.AddAttributeTable(Microsoft.Windows.Design.Metadata.AttributeTable)">
+      <summary>Adds the specified table to the current AppDomain’s attribute store. </summary>
+      <param name="table">The table to add.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="table" /> is null.</exception>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.CategoryEditor">
+      <summary>An abstract class for creating custom category editors.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.CategoryEditor.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEditor" /> class. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.CategoryEditor.ConsumesProperty(Microsoft.Windows.Design.PropertyEditing.PropertyEntry)">
+      <summary>When overridden in a derived class, called once for each property in the category to determine which properties are edited by this <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEditor" />. </summary>
+      <returns>true if this editor edits that property; otherwise, false.</returns>
+      <param name="property">The <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> to check to see if it is edited by this <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEditor" />.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.CategoryEditor.CreateEditorAttribute(Microsoft.Windows.Design.PropertyEditing.CategoryEditor)">
+      <summary>Utility method that creates a new <see cref="T:System.ComponentModel.EditorAttribute" /> for the specified <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEditor" />.</summary>
+      <returns>New <see cref="T:System.ComponentModel.EditorAttribute" /> for the specified <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEditor" />.</returns>
+      <param name="editor">
+        <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEditor" /> instance for which to create the new <see cref="T:System.ComponentModel.EditorAttribute" />.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.CategoryEditor.CreateEditorAttribute(System.Type)">
+      <summary>Utility method that creates a new <see cref="T:System.ComponentModel.EditorAttribute" /> for the specified <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEditor" /> type.</summary>
+      <returns>New <see cref="T:System.ComponentModel.EditorAttribute" /> for the specified <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEditor" /> type.</returns>
+      <param name="categoryEditorType">
+        <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEditor" /> type for which to create the new <see cref="T:System.ComponentModel.EditorAttribute" />.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.CategoryEditor.EditorTemplate">
+      <summary>When overridden in a derived class, gets a <see cref="T:System.Windows.DataTemplate" /> that acts as the UI for a <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEditor" />. </summary>
+      <returns>The <see cref="T:System.Windows.DataTemplate" /> object that represents the editor template.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.CategoryEditor.GetImage(System.Windows.Size)">
+      <summary>When overridden in a derived class, returns an object that the host can place into a <see cref="T:System.Windows.Controls.ContentControl" /> in order to display it. </summary>
+      <returns>An object that contain an icon for the category editor.</returns>
+      <param name="desiredSize">The desired size of the image to return. This method should make the best attempt in matching the requested size, but it does not guarantee it.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.CategoryEditor.TargetCategory">
+      <summary>When overridden in a derived class, gets a localized string that indicates which category this editor belongs to. </summary>
+      <returns>A string representing the category that this editor belongs to.</returns>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.CategoryEntry">
+      <summary>Represents a category of properties.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.CategoryEntry.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEntry" /> class.</summary>
+      <param name="name">The localized name of the category as defined by the <see cref="T:System.ComponentModel.CategoryAttribute" /> attribute.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> is empty or null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.CategoryEntry.ApplyFilter(Microsoft.Windows.Design.PropertyEditing.PropertyFilter)">
+      <summary>Determines if the <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEntry" /> matches a filter and stores the information.</summary>
+      <param name="filter">The filter to compare to.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.CategoryEntry.CategoryName">
+      <summary>Gets the name of the category.</summary>
+      <returns>The name of the category.</returns>
+    </member>
+    <member name="E:Microsoft.Windows.Design.PropertyEditing.CategoryEntry.FilterApplied">
+      <summary>Represents the method that handles the <see cref="E:Microsoft.Windows.Design.PropertyEditing.CategoryEntry.FilterApplied" /> event of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEntry" />.</summary>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.CategoryEntry.Item(System.String)">
+      <summary>When overridden in a derived class, gets the specified property.</summary>
+      <returns>The property specified by <paramref name="propertyName" />.</returns>
+      <param name="propertyName">The name of the property to return.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.CategoryEntry.MatchesFilter">
+      <summary>Gets or sets a value indicating whether this <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEntry" /> matches a filter.</summary>
+      <returns>true if the <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEntry" /> matches the filter; otherwise, false.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.CategoryEntry.MatchesPredicate(Microsoft.Windows.Design.PropertyEditing.PropertyFilterPredicate)">
+      <summary>When overridden in a derived class, indicates whether a <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEntry" /> matches a predicate.</summary>
+      <returns>true if the <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEntry" /> matches the predicate; otherwise, false.</returns>
+      <param name="predicate">The predicate to compare to.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.CategoryEntry.OnFilterApplied(Microsoft.Windows.Design.PropertyEditing.PropertyFilter)">
+      <summary>Raises the <see cref="E:Microsoft.Windows.Design.PropertyEditing.CategoryEntry.FilterApplied" /> event.</summary>
+      <param name="filter">The filter that is being applied.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.CategoryEntry.OnPropertyChanged(System.String)">
+      <summary>Raises the <see cref="E:Microsoft.Windows.Design.PropertyEditing.CategoryEntry.PropertyChanged" /> event.</summary>
+      <param name="propertyName">The name of the property that is changing.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> is null.</exception>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.CategoryEntry.Properties">
+      <summary>When overridden in a derived class, gets all the properties in the category.</summary>
+      <returns>An enumerable collection of all the properties in the category.</returns>
+    </member>
+    <member name="E:Microsoft.Windows.Design.PropertyEditing.CategoryEntry.PropertyChanged">
+      <summary>Represents the method that handles the <see cref="E:Microsoft.Windows.Design.PropertyEditing.CategoryEntry.PropertyChanged" /> event of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.CategoryEntry" />.</summary>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource">
+      <summary>Represents the source of a dependency property value. </summary>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.CustomMarkupExtension">
+      <summary>Gets the custom markup extension the property is set to.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource" /> for the custom markup extension.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.DataBound">
+      <summary>Gets the value that is a data binding that the property is set to.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource" /> that is a data binding.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.DefaultValue">
+      <summary>Gets the default value the property is set to. </summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource" /> for the default value.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.Inherited">
+      <summary>Gets the parent property this property inherits from.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource" /> for the parent property.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.IsCustomMarkupExtension">
+      <summary>Gets a value indicating whether the property is set to a custom markup extension.</summary>
+      <returns>true if the property is set to a custom markup extension; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.IsDataBound">
+      <summary>Gets a value indicating whether the property is set to a data binding expression.</summary>
+      <returns>true if the property is set to a data binding expression; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.IsDefaultValue">
+      <summary>Gets a value indicating whether the property is set to its default value.</summary>
+      <returns>true if the property is set to its default value; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.IsExpression">
+      <summary>Gets a value indicating whether the property is set to an expression.</summary>
+      <returns>true if the property is set to an expression; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.IsInherited">
+      <summary>Gets a value indicating whether the property is inherited.</summary>
+      <returns>true if the property is inherited; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.IsLocal">
+      <summary>Gets a value indicating whether the property is set to a local value.</summary>
+      <returns>true if the property is set to a local value; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.IsLocalResource">
+      <summary>Gets a value indicating whether the property is set to a local resource.</summary>
+      <returns>true if the property is set to a <see cref="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.LocalDynamicResource" /> or a <see cref="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.LocalStaticResource" />; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.IsResource">
+      <summary>Gets a value indicating whether the property is set to a system or local resource.</summary>
+      <returns>true if the property is set to a <see cref="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.SystemResource" />, <see cref="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.LocalDynamicResource" />, or a <see cref="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.LocalStaticResource" />; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.IsSystemResource">
+      <summary>Gets a value indicating whether the property is set to a system resource.</summary>
+      <returns>true if the property is set to a <see cref="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.SystemResource" />; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.IsTemplateBinding">
+      <summary>Gets a value indicating whether the property is set to a <see cref="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.TemplateBinding" /> markup extension.</summary>
+      <returns>true if the property is set to a <see cref="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.TemplateBinding" /> markup extension; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.Local">
+      <summary>Gets the local value the property is set to.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource" /> for the local value.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.LocalDynamicResource">
+      <summary>Gets the <see cref="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.LocalDynamicResource" /> reference the property is set to.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource" /> for the local dynamic resource.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.LocalStaticResource">
+      <summary>Gets the <see cref="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.LocalStaticResource" /> reference the property is set to.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource" /> for the local static resource.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.SystemResource">
+      <summary>Gets the system resource the property is set to.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource" /> for the system resource.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.TemplateBinding">
+      <summary>Gets the <see cref="P:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource.TemplateBinding" /> markup extension the property is set to.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.DependencyPropertyValueSource" /> for the template binding.</returns>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.DialogPropertyValueEditor">
+      <summary>Container for all dialog box-editing logic for <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> objects. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.DialogPropertyValueEditor.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.DialogPropertyValueEditor" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.DialogPropertyValueEditor.#ctor(System.Windows.DataTemplate,System.Windows.DataTemplate)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.DialogPropertyValueEditor" /> class.</summary>
+      <param name="dialogEditorTemplate">A <see cref="T:System.Windows.DataTemplate" /> that is hosted in a host-specific dialog box and has its <see cref="P:System.Windows.FrameworkElement.DataContext" /> set to the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />  that corresponds to the property being edited.</param>
+      <param name="inlineEditorTemplate">A <see cref="T:System.Windows.DataTemplate" /> that is used for the inline editor. If used, its <see cref="P:System.Windows.FrameworkElement.DataContext" /> will be set to the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> that corresponds to the property being edited.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.DialogPropertyValueEditor.DialogEditorTemplate">
+      <summary>Gets or sets the <see cref="T:System.Windows.DataTemplate" /> that is hosted by a host-specific dialog box and has its <see cref="P:System.Windows.FrameworkElement.DataContext" /> set to a <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />. </summary>
+      <returns>The <see cref="T:System.Windows.DataTemplate" /> object that is the template for this value editor.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.DialogPropertyValueEditor.ShowDialog(Microsoft.Windows.Design.PropertyEditing.PropertyValue,System.Windows.IInputElement)">
+      <summary>Called when the <see cref="P:Microsoft.Windows.Design.PropertyEditing.DialogPropertyValueEditor.DialogEditorTemplate" /> is null and a dialog box has been invoked by the user. </summary>
+      <param name="propertyValue">The <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> for the property being edited</param>
+      <param name="commandSource">The <see cref="T:System.Windows.IInputElement" /> that can be used as a source for execution of <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditorCommands" />. </param>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.EditModeSwitchButton">
+      <summary>A convenience button that allows the user to switch between the different <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" /> modes. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.EditModeSwitchButton.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.EditModeSwitchButton" /> class. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.EditModeSwitchButton.OnMouseDown(System.Windows.Input.MouseButtonEventArgs)">
+      <summary>Raises the <see cref="E:System.Windows.Input.Mouse.MouseDown" /> event.</summary>
+      <param name="e">A <see cref="T:System.Windows.Input.MouseButtonEventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.EditModeSwitchButton.OnPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)">
+      <summary>Called when any dependency properties of this control was changed. </summary>
+      <param name="e">A <see cref="T:System.Windows.DependencyPropertyChangedEventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.EditModeSwitchButton.SyncModeToOwningContainer">
+      <summary>Gets or sets a value that indicates whether to sync to the owning container. This is a dependency property.</summary>
+      <returns>true if the <see cref="P:Microsoft.Windows.Design.PropertyEditing.EditModeSwitchButton.TargetEditMode" /> is calculated automatically to match the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ActiveEditMode" /> property of the owning <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" />. false if the mode to switch to is based on the <see cref="P:Microsoft.Windows.Design.PropertyEditing.EditModeSwitchButton.TargetEditMode" /> property.</returns>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.EditModeSwitchButton.SyncModeToOwningContainerProperty">
+      <summary>Identifies the <see cref="P:Microsoft.Windows.Design.PropertyEditing.EditModeSwitchButton.SyncModeToOwningContainer" /> dependency property.</summary>
+      <returns>The identifier for the <see cref="P:Microsoft.Windows.Design.PropertyEditing.EditModeSwitchButton.SyncModeToOwningContainer" /> dependency property.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.EditModeSwitchButton.TargetEditMode">
+      <summary>Gets or sets the mode to switch to when this control is clicked. This is a dependency property.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainerEditMode" /> object.</returns>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.EditModeSwitchButton.TargetEditModeProperty">
+      <summary>Identifies the <see cref="P:Microsoft.Windows.Design.PropertyEditing.EditModeSwitchButton.TargetEditMode" /> dependency property.</summary>
+      <returns>The identifier for the <see cref="P:Microsoft.Windows.Design.PropertyEditing.EditModeSwitchButton.TargetEditMode" /> dependency property.</returns>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.ExtendedPropertyValueEditor">
+      <summary>Container for any and all extended editor logic for properties. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.ExtendedPropertyValueEditor.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.ExtendedPropertyValueEditor" /> class. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.ExtendedPropertyValueEditor.#ctor(System.Windows.DataTemplate,System.Windows.DataTemplate)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.ExtendedPropertyValueEditor" /> class with the specified extended and inline editor <see cref="T:System.Windows.DataTemplate" /> objects.</summary>
+      <param name="extendedEditorTemplate">The <see cref="T:System.Windows.DataTemplate" /> used for the extended popup/pinned editor that is viewed within the Properties window. When used, its <see cref="P:System.Windows.FrameworkElement.DataContext" /> property will be set to a <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</param>
+      <param name="inlineEditorTemplate">The <see cref="T:System.Windows.DataTemplate" /> used for the inline editor. When used, its <see cref="P:System.Windows.FrameworkElement.DataContext" /> property will be set to a <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.ExtendedPropertyValueEditor.ExtendedEditorTemplate">
+      <summary>Get or sets the <see cref="T:System.Windows.DataTemplate" /> used for the extended popup/pinned editor. </summary>
+      <returns />
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.IPropertyFilterTarget">
+      <summary>Handles sorting and filtering functionality.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.IPropertyFilterTarget.ApplyFilter(Microsoft.Windows.Design.PropertyEditing.PropertyFilter)">
+      <summary>Determines if the <see cref="T:Microsoft.Windows.Design.PropertyEditing.IPropertyFilterTarget" /> matches a filter and stores the information. </summary>
+      <param name="filter">The filter to compare to.</param>
+    </member>
+    <member name="E:Microsoft.Windows.Design.PropertyEditing.IPropertyFilterTarget.FilterApplied">
+      <summary>Occurs when a <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyFilter" /> is changed through a call to the <see cref="M:Microsoft.Windows.Design.PropertyEditing.IPropertyFilterTarget.ApplyFilter(Microsoft.Windows.Design.PropertyEditing.PropertyFilter)" /> method.</summary>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.IPropertyFilterTarget.MatchesFilter">
+      <summary>Gets a value indicating whether this <see cref="T:Microsoft.Windows.Design.PropertyEditing.IPropertyFilterTarget" /> matches a filter.</summary>
+      <returns>true if the <see cref="T:Microsoft.Windows.Design.PropertyEditing.IPropertyFilterTarget" /> matches the filter; otherwise, false.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.IPropertyFilterTarget.MatchesPredicate(Microsoft.Windows.Design.PropertyEditing.PropertyFilterPredicate)">
+      <summary>Indicates whether an <see cref="T:Microsoft.Windows.Design.PropertyEditing.IPropertyFilterTarget" /> matches a predicate.</summary>
+      <returns>true if the <see cref="T:Microsoft.Windows.Design.PropertyEditing.IPropertyFilterTarget" /> matches the predicate; otherwise, false.</returns>
+      <param name="predicate">The predicate to compare to.</param>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.NewItemFactory">
+      <summary>Represents a factory for creating new items for a collection or for a property value. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.NewItemFactory.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.NewItemFactory" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.NewItemFactory.CreateInstance(System.Type)">
+      <summary>Creates an instance of the specified <see cref="T:System.Type" /> that can be added to the collection editor or sub-property editor.</summary>
+      <returns>If a constructor is found for <paramref name="type" />, returns an instance of <paramref name="type" />; otherwise, null.</returns>
+      <param name="type">The <see cref="T:System.Type" /> of the object to create.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="type" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.NewItemFactory.GetDisplayName(System.Type)">
+      <summary>Gets a display name for the specified <see cref="T:System.Type" /> that can be added to the collection editor or sub-property editor.</summary>
+      <returns>The name to display for <paramref name="type" />.</returns>
+      <param name="type">The <see cref="T:System.Type" /> for which to get a display name.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="type" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.NewItemFactory.GetImage(System.Type,System.Windows.Size)">
+      <summary>Gets an image for the specified <see cref="T:System.Type" /> that can be used as an icon in the collection editor or sub-property editor.</summary>
+      <returns>The image to display for <paramref name="type" />.</returns>
+      <param name="type">The <see cref="T:System.Type" /> for which to get an image.</param>
+      <param name="desiredSize">The desired size of the image.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="type" /> is null.</exception>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.NewItemTypesAttribute">
+      <summary>Used to specify which object types can be assigned as the value of a property or as the value of a property type. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.NewItemTypesAttribute.#ctor(System.Type)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.NewItemTypesAttribute" /> class.</summary>
+      <param name="type">A <see cref="T:System.Type" /> object that this attribute declares as being a valid new item type.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="type" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.NewItemTypesAttribute.#ctor(System.Type[])">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.NewItemTypesAttribute" /> class.</summary>
+      <param name="types">An array of <see cref="T:System.Type" /> objects that this attribute declares as being valid new item types.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="types" /> is null or empty.</exception>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.NewItemTypesAttribute.FactoryType">
+      <summary>Gets or sets the factory type associated with this attribute. </summary>
+      <returns>A <see cref="T:System.Type" /> object that represents the type associated with this attribute.</returns>
+      <exception cref="T:System.ArgumentException">type does not derive from <see cref="T:Microsoft.Windows.Design.PropertyEditing.NewItemFactory" />.</exception>
+      <exception cref="T:System.ArgumentNullException">type is null.</exception>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.NewItemTypesAttribute.TypeId">
+      <summary>Gets the type ID for this attribute. </summary>
+      <returns>An object representing the type ID.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.NewItemTypesAttribute.Types">
+      <summary>Gets a list of <see cref="T:System.Type" /> objects that this attribute declares as being valid new item types. </summary>
+      <returns>An enumeration of the types that this attribute guarantees to be valid new item types.</returns>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer">
+      <summary>Used as a graphical container for <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> instances.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" /> class.</summary>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ActiveEditMode">
+      <summary>Gets or sets the currently displayed edit mode for this container. This is a dependency property. </summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainerEditMode" /> for this container.</returns>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ActiveEditModeProperty">
+      <summary>Identifies the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ActiveEditMode" /> dependency property.</summary>
+      <returns>The identifier for the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ActiveEditMode" /> dependency property.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.DefaultPropertyValueEditor">
+      <summary>Gets or sets the default <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor" />. This is a dependency property.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor" /> that represents the default property value editor.</returns>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.DefaultPropertyValueEditorProperty">
+      <summary>Identifies the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.DefaultPropertyValueEditor" /> dependency property.</summary>
+      <returns>The identifier for the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.DefaultPropertyValueEditor" /> dependency property.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.DefaultStandardValuesPropertyValueEditor">
+      <summary>Gets or sets the default standard values editor. This is a dependency property. </summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor" /> that represents the default standard values editor.</returns>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.DefaultStandardValuesPropertyValueEditorProperty">
+      <summary>Identifies the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.DefaultStandardValuesPropertyValueEditor" /> dependency property.</summary>
+      <returns>The identifier for the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.DefaultStandardValuesPropertyValueEditor" /> dependency property.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.DialogCommandSource">
+      <summary>Gets or sets the <see cref="T:System.Windows.IInputElement" /> to pass to the <see cref="M:Microsoft.Windows.Design.PropertyEditing.DialogPropertyValueEditor.ShowDialog(Microsoft.Windows.Design.PropertyEditing.PropertyValue,System.Windows.IInputElement)" /> method as the command source. This is a dependency property.</summary>
+      <returns>An <see cref="T:System.Windows.IInputElement" /> to pass to the <see cref="M:Microsoft.Windows.Design.PropertyEditing.DialogPropertyValueEditor.ShowDialog(Microsoft.Windows.Design.PropertyEditing.PropertyValue,System.Windows.IInputElement)" /> method as the command source.</returns>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.DialogCommandSourceProperty">
+      <summary>Identifies the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.DialogCommandSource" /> dependency property.</summary>
+      <returns>The identifier for the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.DialogCommandSource" /> dependency property.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.DialogEditorTemplate">
+      <summary>Gets the most appropriate <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.DialogEditorTemplate" /> for the current <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" />. </summary>
+      <returns>A <see cref="T:System.Windows.DataTemplate" /> that represents the most appropriate <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.DialogEditorTemplate" /> for the current <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" />.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ExtendedEditorTemplate">
+      <summary>Gets the most appropriate <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ExtendedEditorTemplate" /> for the current <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" />. </summary>
+      <returns>A <see cref="T:System.Windows.DataTemplate" /> that represents the most appropriate <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ExtendedEditorTemplate" /> for the current <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" />.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ExtendedPinnedRowTemplate">
+      <summary>Gets or sets the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ExtendedPinnedRowTemplate" /> for this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" />. This is a dependency property.</summary>
+      <returns>A <see cref="T:System.Windows.Controls.ControlTemplate" /> that represents the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ExtendedPinnedRowTemplate" /> for this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" />.</returns>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ExtendedPinnedRowTemplateProperty">
+      <summary>Identifies the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ExtendedPinnedRowTemplate" /> dependency property.</summary>
+      <returns>The identifier for the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ExtendedPinnedRowTemplate" /> dependency property.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ExtendedPopupRowTemplate">
+      <summary>Gets or sets the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ExtendedPopupRowTemplate" /> for this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" />. This is a dependency property.</summary>
+      <returns>A <see cref="T:System.Windows.Controls.ControlTemplate" /> that represents the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ExtendedPopupRowTemplate" /> for this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" />.</returns>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ExtendedPopupRowTemplateProperty">
+      <summary>Identifies the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ExtendedPopupRowTemplate" /> dependency property.</summary>
+      <returns>The identifier for the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ExtendedPopupRowTemplate" /> dependency property.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.GetOwningPropertyContainer(System.Windows.DependencyObject)">
+      <summary>Gets the value of the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.OwningPropertyContainer" /> attached property for a specified dependency object. </summary>
+      <returns>The owning <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" />.</returns>
+      <param name="dependencyObject">The <see cref="T:System.Windows.DependencyObject" /> to get the property from.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.InlineEditorTemplate">
+      <summary>Gets the most appropriate <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.InlineEditorTemplate" /> for the current <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" />. </summary>
+      <returns>A <see cref="T:System.Windows.DataTemplate" /> that represents the most appropriate <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.InlineEditorTemplate" /> for the current <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" />.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.InlineRowTemplate">
+      <summary>Gets or sets the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.InlineRowTemplate" /> for the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" />. This is a dependency property.</summary>
+      <returns>A <see cref="T:System.Windows.Controls.ControlTemplate" /> that represents the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.InlineRowTemplate" /> for the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" />.</returns>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.InlineRowTemplateProperty">
+      <summary>Identifies the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.InlineRowTemplate" /> dependency property.</summary>
+      <returns>The identifier for the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.InlineRowTemplate" /> dependency property.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.MatchesFilter">
+      <summary>Gets the value for <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.MatchesFilter" /> stored in the contained <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" />. </summary>
+      <returns>The value for <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.MatchesFilter" /> stored in the contained <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" />.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.OnPropertyChanged(System.String)">
+      <summary>Raises the <see cref="E:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.PropertyChanged" /> event.</summary>
+      <param name="propertyName">Name of the property.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.OnPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)">
+      <summary>Raises the <see cref="E:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.PropertyChanged" /> event.</summary>
+      <param name="e">A <see cref="T:System.Windows.DependencyPropertyChangedEventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.OpenDialogWindow">
+      <summary>Gets the command that is raised when the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ActiveEditMode" /> property is changed to <see cref="F:Microsoft.Windows.Design.PropertyEditing.PropertyContainerEditMode.Dialog" />. </summary>
+      <returns>A <see cref="T:System.Windows.Input.RoutedCommand" /> that is raised when the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.ActiveEditMode" /> property is changed to <see cref="F:Microsoft.Windows.Design.PropertyEditing.PropertyContainerEditMode.Dialog" />.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.OwningPropertyContainer">
+      <summary>Gets or sets the owning <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" /> that can be used by UI elements of <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor" /> types to gain access to their parent <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" />. This is a dependency property.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" /> that represents the owning <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" />.</returns>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.OwningPropertyContainerProperty">
+      <summary>Identifies the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.OwningPropertyContainer" /> attached property. </summary>
+      <returns>The identifier for the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.OwningPropertyContainer" /> attached property.</returns>
+    </member>
+    <member name="E:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.PropertyChanged">
+      <summary>Occurs when a property is changed.</summary>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.PropertyEntry">
+      <summary>Gets or sets the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> instance on which this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" /> operates. This is a dependency property.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> instance on which this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" /> operates.</returns>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.PropertyEntryProperty">
+      <summary>Identifies the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.PropertyEntry" /> dependency property.</summary>
+      <returns>The identifier for the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.PropertyEntry" /> dependency property.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.SetOwningPropertyContainer(System.Windows.DependencyObject,Microsoft.Windows.Design.PropertyEditing.PropertyContainer)">
+      <summary>Sets the value of the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyContainer.OwningPropertyContainer" /> attached property for a specified dependency object. </summary>
+      <param name="dependencyObject">The <see cref="T:System.Windows.DependencyObject" /> to set the property on.</param>
+      <param name="value">The owning <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" />.</param>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainerEditMode">
+      <summary>Defines the different edit modes for a <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyContainer" />.</summary>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.PropertyContainerEditMode.Inline">
+      <summary>Inline editor.</summary>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.PropertyContainerEditMode.ExtendedPopup">
+      <summary>Extended editor that is displayed over the Properties window.</summary>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.PropertyContainerEditMode.ExtendedPinned">
+      <summary>Extended editor that is pinned into place within the Properties window.</summary>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.PropertyContainerEditMode.Dialog">
+      <summary>Dialog box editor.</summary>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry">
+      <summary>Represents a property.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> class. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.#ctor(Microsoft.Windows.Design.PropertyEditing.PropertyValue)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> class that acts as a sub-property of the specified <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />. </summary>
+      <param name="parentValue">The parent <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />. Root properties do not have a parent <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.ApplyFilter(Microsoft.Windows.Design.PropertyEditing.PropertyFilter)">
+      <summary>Determines if the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> matches a filter and stores the information. </summary>
+      <param name="filter">The filter to compare to.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.CategoryName">
+      <summary>When overridden in a derived class, gets the name of the category that this property resides in.</summary>
+      <returns>The name of the category that this property resides in.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.CreatePropertyValueInstance">
+      <summary>When overridden in a derived class, used by the host infrastructure to create a new host-specific <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> instance.</summary>
+      <returns>A new <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> instance.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.Description">
+      <summary>When overridden in a derived class, gets the description of the encapsulated property.</summary>
+      <returns>The description of the encapsulated property.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.DisplayName">
+      <summary>Gets the display name for the property. </summary>
+      <returns>The display name for the property.</returns>
+    </member>
+    <member name="E:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.FilterApplied">
+      <summary>Occurs when a <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyFilter" /> is changed through a call to the <see cref="M:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.ApplyFilter(Microsoft.Windows.Design.PropertyEditing.PropertyFilter)" /> method.</summary>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.IsAdvanced">
+      <summary>When overridden in a derived class, gets a value indicating whether the encapsulated property is an advanced property.</summary>
+      <returns>true if the encapsulated property is an advanced property; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.IsReadOnly">
+      <summary>When overridden in a derived class, gets a value indicating whether the encapsulated property is read-only.</summary>
+      <returns>true if the encapsulated property is read-only; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.MatchesFilter">
+      <summary>Gets or sets a value indicating whether this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> matches a filter.</summary>
+      <returns>true if the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> matches the filter; otherwise, false.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.MatchesPredicate(Microsoft.Windows.Design.PropertyEditing.PropertyFilterPredicate)">
+      <summary>Indicates whether a <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> matches a predicate.</summary>
+      <returns>true if the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> matches the predicate; otherwise, false.</returns>
+      <param name="predicate">The predicate to compare to.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.OnFilterApplied(Microsoft.Windows.Design.PropertyEditing.PropertyFilter)">
+      <summary>Raises the <see cref="E:Microsoft.Windows.Design.PropertyEditing.IPropertyFilterTarget.FilterApplied" /> event.</summary>
+      <param name="filter">The filter that is being applied.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+      <summary>Raises the <see cref="E:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.PropertyChanged" /> event.</summary>
+      <param name="e">A <see cref="T:System.ComponentModel.PropertyChangedEventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.OnPropertyChanged(System.String)">
+      <summary>Raises the <see cref="E:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.PropertyChanged" /> event.</summary>
+      <param name="propertyName">The name of the property is changing.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> is null.</exception>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.ParentValue">
+      <summary>Gets the parent <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />. </summary>
+      <returns>The parent <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</returns>
+    </member>
+    <member name="E:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.PropertyChanged">
+      <summary>Occurs when a property value changes.</summary>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.PropertyName">
+      <summary>When overridden in a derived class, gets the name of the encapsulated property.</summary>
+      <returns>The name of the encapsulated property.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.PropertyType">
+      <summary>When overridden in a derived class, gets the type of the encapsulated property.</summary>
+      <returns>The type of the encapsulated property.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.PropertyValue">
+      <summary>Gets the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> (data model) for this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" />.</summary>
+      <returns>The <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> for this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" />.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.PropertyValueEditor">
+      <summary>When overridden in a derived class, gets the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor" /> that will be used to edit this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" />. </summary>
+      <returns>The <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor" /> that will be used to edit this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" />.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntry.StandardValues">
+      <summary>When overridden in a derived class, gets the standard values that the encapsulated property supports.</summary>
+      <returns>A <see cref="T:System.Collections.ICollection" /> of standard values that the encapsulated property supports.</returns>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntryCollection">
+      <summary>Represents a collection of <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> instances for sub-properties of a given <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" />.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyEntryCollection.#ctor(Microsoft.Windows.Design.PropertyEditing.PropertyValue)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntryCollection" /> class. </summary>
+      <param name="parentValue">The parent <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="parentValue" /> is null.</exception>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntryCollection.Count">
+      <summary>When overridden in a derived class, gets the number of <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> instances in this collection.</summary>
+      <returns>The number of <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> instances in this collection.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyEntryCollection.GetEnumerator">
+      <summary>When overridden in a derived class, returns an <see cref="T:System.Collections.IEnumerator" /> of all the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> instances in this collection.</summary>
+      <returns />
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntryCollection.Item(System.String)">
+      <summary>When overridden in a derived class, gets a <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> from this collection of the specified name. </summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyEntry" /> instance of the specified name or null if it does not exist.</returns>
+      <param name="propertyName">The name of the property.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyEntryCollection.ParentValue">
+      <summary>Gets the parent <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> that represents the parent.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyEntryCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>For a description of this member, see <see cref="M:System.Collections.IEnumerable.GetEnumerator" />.</summary>
+      <returns />
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyFilter">
+      <summary>Used as part of the searching and filtering functionality that may be provided by the property editing host. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyFilter.#ctor(System.Collections.Generic.IEnumerable{Microsoft.Windows.Design.PropertyEditing.PropertyFilterPredicate})">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyFilter" /> class.</summary>
+      <param name="predicates">An <see cref="T:System.Collections.IEnumerable" /> collection of predicates.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyFilter.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyFilter" /> class. </summary>
+      <param name="filterText">String representation of predicates. The predicates are space delimited.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyFilter.IsEmpty">
+      <summary>Gets a value indicating whether <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyFilter" /> has any predicates.</summary>
+      <returns>true if this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyFilter" /> does not have any predicates; otherwise, false.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyFilter.Match(Microsoft.Windows.Design.PropertyEditing.IPropertyFilterTarget)">
+      <summary>Compares this filter with a particular filter target. </summary>
+      <returns>true if there are no predicates or if one or more predicates match the filter target; otherwise, false.</returns>
+      <param name="target">Target to compare with.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="target" /> is null.</exception>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyFilterAppliedEventArgs">
+      <summary>Provides data for the <see cref="E:Microsoft.Windows.Design.PropertyEditing.IPropertyFilterTarget.FilterApplied" /> event.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyFilterAppliedEventArgs.#ctor(Microsoft.Windows.Design.PropertyEditing.PropertyFilter)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyFilterAppliedEventArgs" /> class. </summary>
+      <param name="filter">The <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyFilter" /> that was applied.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyFilterAppliedEventArgs.Filter">
+      <summary>Gets the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyFilter" /> that was applied.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyFilter" /> that was applied.</returns>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyFilterPredicate">
+      <summary>Represents a predicate for search and filtering.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyFilterPredicate.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyFilterPredicate" /> class.</summary>
+      <param name="matchText">The predicate string.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="matchText" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyFilterPredicate.Match(System.String)">
+      <summary>Returns a value indicating whether a case insensitive match of the predicate string is contained within the target string.</summary>
+      <returns>true if a case insensitive match of the predicate string is contained within the target string; otherwise, false.</returns>
+      <param name="target">The target string  to compare with the predicate string.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyFilterPredicate.MatchText">
+      <summary>Gets an upper-case version of the predicate string.</summary>
+      <returns>An upper-case version of the predicate string.</returns>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyMarker">
+      <summary>A control that appears with a property value in the property window and can contain information about the property value. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyMarker.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyMarker" /> class.</summary>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyOrder">
+      <summary>Used to set the order in which properties appear in a category, or in a list of sub-properties. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyOrder.CreateAfter(Microsoft.Windows.Design.PropertyEditing.PropertyOrder)">
+      <summary>Creates a <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyOrder" /> object that is added after the specified token.</summary>
+      <returns>A new <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyOrder" /> object.</returns>
+      <param name="reference">The reference token.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="reference" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyOrder.CreateBefore(Microsoft.Windows.Design.PropertyEditing.PropertyOrder)">
+      <summary>Creates a <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyOrder" /> object that is added before the specified token.</summary>
+      <returns>A new <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyOrder" /> object.</returns>
+      <param name="reference">The reference token.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="reference" /> is null.</exception>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyOrder.Default">
+      <summary>Gets the system-defined default order position.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyOrder" /> instance that represents the default order position.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyOrder.Early">
+      <summary>Gets the system-defined early order position.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyOrder" /> instance that represents the system-defined early order position.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyOrder.Late">
+      <summary>Gets the system-defined late order position.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyOrder" /> instance that represents the system-defined late order position.</returns>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyOrderAttribute">
+      <summary>This attribute is attached to a property to specify the sort order of a property in a property browser. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyOrderAttribute.#ctor(Microsoft.Windows.Design.PropertyEditing.PropertyOrder)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyOrderAttribute" /> class.</summary>
+      <param name="order">The <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyOrder" /> to assign the property.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="order" /> is null.</exception>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyOrderAttribute.Order">
+      <summary>Gets the associated <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyOrder" />.</summary>
+      <returns>The priority in which to display the property in the property browser.</returns>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue">
+      <summary>Represents the value of a property.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValue.#ctor(Microsoft.Windows.Design.PropertyEditing.PropertyEntry)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> class.</summary>
+      <param name="parentProperty">The property entry that is the parent of this property value.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="parentProperty" /> is null.</exception>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.CanConvertFromString">
+      <summary>When overridden in a derived class, gets a value indicating whether <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.Value" /> can be converted from a string.</summary>
+      <returns>true if <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.Value" /> can be converted from a string; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.CatchExceptions">
+      <summary>Gets a value indicating how to handle exceptions that occur during the get and set methods of the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.Value" /> and <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.StringValue" /> properties.</summary>
+      <returns>true if the exception should be caught; false if the exception should be propagated to the caller.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValue.ClearValue">
+      <summary>When overridden in a derived class, clears the value so that it is not set.</summary>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.Collection">
+      <summary>When overridden in a derived class, gets a <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection" /> of objects that represents the value of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</summary>
+      <returns>A collection of objects that represents the value of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValue.ConvertStringToValue(System.String)">
+      <summary>When overridden in a derived class, attempts to convert the specified <see cref="T:System.String" /> to an <see cref="T:System.Object" />.</summary>
+      <returns>An object that represents <paramref name="value" />.</returns>
+      <param name="value">The string to convert.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValue.ConvertValueToString(System.Object)">
+      <summary>When overridden in a derived class, attempts to convert the specified <see cref="T:System.Object" /> to a <see cref="T:System.String" />.</summary>
+      <returns>A string that represents <paramref name="value" />.</returns>
+      <param name="value">The object to convert.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValue.GetValueCore">
+      <summary>When overridden in a derived class, returns the <see cref="T:System.Object" /> that should be returned by the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.Value" /> property.</summary>
+      <returns>The object that should be returned by the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.Value" /> property.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.HasSubProperties">
+      <summary>When overridden in a derived class, gets a value indicating whether this property value supports sub-properties.</summary>
+      <returns>true if the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> supports sub-properties; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.IsCollection">
+      <summary>When overridden in a derived class, gets a value indicating whether this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> is a collection.</summary>
+      <returns>true if <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> is a collection; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.IsDefaultValue">
+      <summary>When overridden in a derived class, gets a value indicating whether the current <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.Value" /> is the default value for the property.</summary>
+      <returns>true if <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.Value" /> is the default value for the property; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.IsMixedValue">
+      <summary>When overridden in a derived class, gets a value indicating whether this property value represents a property for multiple objects that have more than one value.</summary>
+      <returns>true if this value represents a property for multiple objects that have more than one value; otherwise, false.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValue.NotifyRootValueChanged">
+      <summary>Raises the <see cref="E:Microsoft.Windows.Design.PropertyEditing.PropertyValue.RootValueChanged" /> event.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValue.NotifySubPropertyChanged">
+      <summary>Raises the <see cref="E:Microsoft.Windows.Design.PropertyEditing.PropertyValue.SubPropertyChanged" /> event. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValue.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+      <summary>Raises the <see cref="E:Microsoft.Windows.Design.PropertyEditing.PropertyValue.PropertyChanged" /> event with the specified <see cref="T:System.ComponentModel.PropertyChangedEventArgs" />. </summary>
+      <param name="e">The data for the event.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValue.OnPropertyChanged(System.String)">
+      <summary>Raises the <see cref="E:Microsoft.Windows.Design.PropertyEditing.PropertyValue.PropertyChanged" /> event with the specified string.</summary>
+      <param name="propertyName">The name of the property that is changing.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValue.OnPropertyValueException(Microsoft.Windows.Design.PropertyEditing.PropertyValueExceptionEventArgs)">
+      <summary>Raises the <see cref="E:Microsoft.Windows.Design.PropertyEditing.PropertyValue.PropertyValueException" /> event.</summary>
+      <param name="e">The data for the event.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="e" /> is null.</exception>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.ParentProperty">
+      <summary>Gets the parent of this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</summary>
+      <returns>The parent of this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</returns>
+    </member>
+    <member name="E:Microsoft.Windows.Design.PropertyEditing.PropertyValue.PropertyChanged">
+      <summary>Represents the method that handles the <see cref="E:Microsoft.Windows.Design.PropertyEditing.PropertyValue.PropertyChanged" /> event of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</summary>
+    </member>
+    <member name="E:Microsoft.Windows.Design.PropertyEditing.PropertyValue.PropertyValueException">
+      <summary>Represents the method that handles the <see cref="E:Microsoft.Windows.Design.PropertyEditing.PropertyValue.PropertyValueException" /> event of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</summary>
+    </member>
+    <member name="E:Microsoft.Windows.Design.PropertyEditing.PropertyValue.RootValueChanged">
+      <summary>Represents the method that handles the <see cref="E:Microsoft.Windows.Design.PropertyEditing.PropertyValue.RootValueChanged" /> event of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValue.SetValueCore(System.Object)">
+      <summary>When overridden in a derived class, sets the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.Value" /> property to the specified <see cref="T:System.Object" />.</summary>
+      <param name="value">The object to set as the value of the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.Value" /> property.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.Source">
+      <summary>When overridden in a derived class, gets a <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueSource" /> that contains information about the source of this property value.</summary>
+      <returns>Information about the source of this property value.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.StringValue">
+      <summary>Gets or sets the value of this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> as a <see cref="T:System.String" />.</summary>
+      <returns>A string that contains the value of this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.SubProperties">
+      <summary>When overridden in a derived class, gets the sub-properties of this property value.</summary>
+      <returns>A collection of sub-properties.</returns>
+    </member>
+    <member name="E:Microsoft.Windows.Design.PropertyEditing.PropertyValue.SubPropertyChanged">
+      <summary>Represents the method that handles the <see cref="E:Microsoft.Windows.Design.PropertyEditing.PropertyValue.SubPropertyChanged" /> event of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValue.ValidateValue(System.Object)">
+      <summary>When overridden in a derived class, checks that the specified <see cref="T:System.Object" /> contains a valid value before setting the <see cref="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.Value" /> property to it.</summary>
+      <param name="valueToValidate">The object to check for a valid value.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValue.Value">
+      <summary>Gets or sets the value of this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</summary>
+      <returns>An object that contains the value of this <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</returns>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection">
+      <summary>Represents a collection of <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> instances. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection.#ctor(Microsoft.Windows.Design.PropertyEditing.PropertyValue)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection" /> class.</summary>
+      <param name="parentValue">The parent <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />. This will be the property whose type is a collection.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="parentValue" /> is null.</exception>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection.Add(System.Object)">
+      <summary>When overridden in a derived class, adds the specified object into the collection.</summary>
+      <returns>The <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> for the added object.</returns>
+      <param name="value">The object to add to the collection</param>
+    </member>
+    <member name="E:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection.CollectionChanged">
+      <summary>Occurs when the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection" /> changes.</summary>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection.Count">
+      <summary>When overridden in a derived class, gets the number of items in the collection.</summary>
+      <returns>The number of items in the collection.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection.GetEnumerator">
+      <summary>When overridden in a derived class, returns a strongly typed <see cref="T:System.Collections.IEnumerator" /> for the collection of <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> objects.</summary>
+      <returns />
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection.Insert(System.Object,System.Int32)">
+      <summary>When overridden in a derived class, inserts the specified object into the collection at the specified index.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> for the inserted object.</returns>
+      <param name="value">The object to insert into the collection.</param>
+      <param name="index">The index of where to insert the object.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection.Item(System.Int32)">
+      <summary>When overridden in a derived class, gets the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> at the specified index.</summary>
+      <returns>The <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> at the specified index.</returns>
+      <param name="index">The index of a <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> in the collection.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+      <summary>Raises the <see cref="E:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection.CollectionChanged" /> event.</summary>
+      <param name="e">A <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection.ParentValue">
+      <summary>Gets the parent <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> that represents the parent.</returns>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection.Remove(Microsoft.Windows.Design.PropertyEditing.PropertyValue)">
+      <summary>When overridden in a derived class, removes the specified <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> from the collection. </summary>
+      <returns>true if the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> was removed successfully; otherwise, false.</returns>
+      <param name="property">The <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> to remove from the collection.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection.RemoveAt(System.Int32)">
+      <summary>When overridden in a derived class, removes the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> from the collection at the specified index. </summary>
+      <param name="index">The index of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> to remove.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection.SetIndex(System.Int32,System.Int32)">
+      <summary>When overridden in a derived class, swaps the order of objects in the collection. </summary>
+      <param name="currentIndex">The index of the first object.</param>
+      <param name="newIndex">The index of the second object.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValueCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>For a description of this member, see <see cref="M:System.Collections.IEnumerable.GetEnumerator" />.</summary>
+      <returns />
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor">
+      <summary>Container for any and all inline editor logic for properties. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor.#ctor(System.Windows.DataTemplate)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor" /> class.</summary>
+      <param name="inlineEditorTemplate">The <see cref="T:System.Windows.DataTemplate" /> that is used for an inline editor. This <see cref="T:System.Windows.DataTemplate" /> has its <see cref="P:System.Windows.FrameworkElement.DataContext" /> set to a <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" />.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor.CreateEditorAttribute(Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor)">
+      <summary>Utility method that creates a new <see cref="T:System.ComponentModel.EditorAttribute" /> for the specified <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor" /> type.</summary>
+      <returns>A new <see cref="T:System.ComponentModel.EditorAttribute" /> for the specified <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor" /> type.</returns>
+      <param name="editor">
+        <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor" /> instance for which to create the new <see cref="T:System.ComponentModel.EditorAttribute" />.</param>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor.CreateEditorAttribute(System.Type)">
+      <summary>Utility method that creates a new <see cref="T:System.ComponentModel.EditorAttribute" /> for the specified <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor" /> type.</summary>
+      <returns>A new <see cref="T:System.ComponentModel.EditorAttribute" /> for the specified <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor" /> type.</returns>
+      <param name="propertyValueEditorType">
+        <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor" /> type for which to create the new <see cref="T:System.ComponentModel.EditorAttribute" />.</param>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditor.InlineEditorTemplate">
+      <summary>Gets or sets the <see cref="T:System.Windows.DataTemplate" /> that is used for an inline editor. </summary>
+      <returns />
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditorCommands">
+      <summary>Provides standard commands that control the behavior of a property window when the user edits properties. </summary>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditorCommands.AbortTransaction">
+      <summary>Gets a <see cref="T:System.Windows.Input.RoutedCommand" /> that represents a request to cancel a transaction associated with a property edit.</summary>
+      <returns>A request to cancel a transaction associated with a property edit.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditorCommands.BeginTransaction">
+      <summary>Gets a <see cref="T:System.Windows.Input.RoutedCommand" /> that represents a request to begin a new transaction associated with a property edit.</summary>
+      <returns>A request to begin a new transaction associated with a property edit.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditorCommands.CommitTransaction">
+      <summary>Gets a <see cref="T:System.Windows.Input.RoutedCommand" /> that represents a request to commit a transaction associated with a property edit.</summary>
+      <returns>A request to commit a transaction associated with a property edit.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditorCommands.FinishEditing">
+      <summary>Gets a <see cref="T:System.Windows.Input.RoutedCommand" /> that represents a notification to the host that a property edit has been completed. </summary>
+      <returns>A notification to the host that a property edit has been completed.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditorCommands.ShowDialogEditor">
+      <summary>Gets a <see cref="T:System.Windows.Input.RoutedCommand" /> that represents a request to display a dialog box editor for a property.</summary>
+      <returns>A request to display a dialog box editor for a property.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditorCommands.ShowExtendedPinnedEditor">
+      <summary>Gets a <see cref="T:System.Windows.Input.RoutedCommand" /> that represents a request to display a pinned editor for a property.</summary>
+      <returns>A request to display a pinned editor for a property.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditorCommands.ShowExtendedPopupEditor">
+      <summary>Gets a <see cref="T:System.Windows.Input.RoutedCommand" /> that represents a request to display an extended editor for a property.</summary>
+      <returns>A request to display an extended editor for a property.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValueEditorCommands.ShowInlineEditor">
+      <summary>Gets a <see cref="T:System.Windows.Input.RoutedCommand" /> that represents a request to display an inline editor for a property.</summary>
+      <returns>A request to display an inline editor for a property.</returns>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueExceptionEventArgs">
+      <summary>Provides data for the <see cref="E:Microsoft.Windows.Design.PropertyEditing.PropertyValue.PropertyValueException" /> event.</summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValueExceptionEventArgs.#ctor(System.String,Microsoft.Windows.Design.PropertyEditing.PropertyValue,Microsoft.Windows.Design.PropertyEditing.PropertyValueExceptionSource,System.Exception)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueExceptionEventArgs" /> class.</summary>
+      <param name="message">A message that indicates what failed.</param>
+      <param name="value">The <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> for which the exception occurred.</param>
+      <param name="source">The source that generated this exception (get or set).</param>
+      <param name="exception">The inner exception.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="message" /> is null.</exception>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValueExceptionEventArgs.Exception">
+      <summary>Gets the contained exception.</summary>
+      <returns>An <see cref="T:System.Exception" /> that is the contained exception.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValueExceptionEventArgs.Message">
+      <summary>Gets the message that indicates what failed.</summary>
+      <returns>The message that indicates what failed.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValueExceptionEventArgs.PropertyValue">
+      <summary>Gets the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> for which the exception is occurring.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> for which the exception is occurring.</returns>
+    </member>
+    <member name="P:Microsoft.Windows.Design.PropertyEditing.PropertyValueExceptionEventArgs.Source">
+      <summary>Gets the source that generated the exception.</summary>
+      <returns>A <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueExceptionSource" /> that generated the exception.</returns>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueExceptionSource">
+      <summary>Indicates the source of the exception thrown by a <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValue" /> instance.</summary>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.PropertyValueExceptionSource.Get">
+      <summary>Indicates that the exception occurred during a get operation.</summary>
+    </member>
+    <member name="F:Microsoft.Windows.Design.PropertyEditing.PropertyValueExceptionSource.Set">
+      <summary>Indicates that the exception occurred during a set operation.</summary>
+    </member>
+    <member name="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueSource">
+      <summary>Represents the source of a property value. </summary>
+    </member>
+    <member name="M:Microsoft.Windows.Design.PropertyEditing.PropertyValueSource.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Windows.Design.PropertyEditing.PropertyValueSource" /> class. </summary>
+    </member>
+  </members>
+</doc>

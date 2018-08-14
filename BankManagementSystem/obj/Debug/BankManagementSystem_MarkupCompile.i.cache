@@ -1,0 +1,20 @@
+﻿BankManagementSystem
+
+
+winexe
+C#
+.cs
+C:\Users\Anupam Hayat\Desktop\BankManagementSystem\BankManagementSystem\obj\Debug\
+BankManagementSystem
+none
+false
+DEBUG;TRACE
+C:\Users\Anupam Hayat\Desktop\BankManagementSystem\BankManagementSystem\App.xaml
+15-891948777
+1-1137328430
+24-1870109207
+201975013633
+Admin\AdminBalanceEnquiry.xaml;Admin\AdminCredit.xaml;Admin\AdminDebit.xaml;Admin\AllTransaction.xaml;Admin\DeleteAccount.xaml;Admin\ReportAllAccount.xaml;BMSMain.xaml;BmsUser.xaml;Login.xaml;NewAccount.xaml;User\AccountSummary.xaml;User\BalanceEnquiry.xaml;User\UserCredit.xaml;User\UserDebit.xaml;User\UserTransferMoney.xaml;
+
+False
+
